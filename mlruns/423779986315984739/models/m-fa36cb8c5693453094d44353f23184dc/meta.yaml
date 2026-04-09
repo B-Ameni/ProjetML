@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/423779986315984739/models/m-fa36cb8c5693453094d44353f23184dc/artifacts
+creation_timestamp: 1775650267321
+experiment_id: '423779986315984739'
+last_updated_timestamp: 1775650272424
+model_id: m-fa36cb8c5693453094d44353f23184dc
+model_type: null
+name: model
+source_run_id: dbf67cdb3ed846ed9d072e91e661a66b
+status: 2
+status_message: null

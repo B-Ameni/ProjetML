@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/423779986315984739/c89a59cd3d3644b89047e3c6e6f7cc44/artifacts
+end_time: 1775083730775
+entry_point_name: ''
+experiment_id: '423779986315984739'
+lifecycle_stage: active
+run_id: c89a59cd3d3644b89047e3c6e6f7cc44
+run_name: Logistic Regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775083727215
+status: 3
+tags: []
+user_id: DELL

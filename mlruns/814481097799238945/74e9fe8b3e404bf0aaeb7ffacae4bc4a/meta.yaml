@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/814481097799238945/74e9fe8b3e404bf0aaeb7ffacae4bc4a/artifacts
+end_time: 1775083763715
+entry_point_name: ''
+experiment_id: '814481097799238945'
+lifecycle_stage: active
+run_id: 74e9fe8b3e404bf0aaeb7ffacae4bc4a
+run_name: PCA_and_tSNE_Visualization
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775083751124
+status: 3
+tags: []
+user_id: DELL

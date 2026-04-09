@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/423779986315984739/affd70a882c04c7685bf39c1da033799/artifacts
+end_time: 1775695825844
+entry_point_name: ''
+experiment_id: '423779986315984739'
+lifecycle_stage: active
+run_id: affd70a882c04c7685bf39c1da033799
+run_name: Random Forest
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775695820855
+status: 3
+tags: []
+user_id: DELL

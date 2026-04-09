@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/423779986315984739/models/m-ea224edb8d694c50a260181fa4e832ba/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.9
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.10.1
+model_id: m-ea224edb8d694c50a260181fa4e832ba
+model_size_bytes: 77895
+model_uuid: m-ea224edb8d694c50a260181fa4e832ba
+prompts: null
+run_id: 21ea4c1ee81c4de1af171c1be4e0176a
+utc_time_created: '2026-04-08 12:00:51.528500'

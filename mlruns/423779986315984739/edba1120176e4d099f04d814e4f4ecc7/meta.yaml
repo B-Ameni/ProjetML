@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/423779986315984739/edba1120176e4d099f04d814e4f4ecc7/artifacts
+end_time: 1775650373651
+entry_point_name: ''
+experiment_id: '423779986315984739'
+lifecycle_stage: active
+run_id: edba1120176e4d099f04d814e4f4ecc7
+run_name: KNN
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775650365796
+status: 3
+tags: []
+user_id: DELL

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/727344129178580169/2ff27b70333c4f28b26483eb3233b0b4/artifacts
+end_time: 1775083747496
+entry_point_name: ''
+experiment_id: '727344129178580169'
+lifecycle_stage: active
+run_id: 2ff27b70333c4f28b26483eb3233b0b4
+run_name: Random Forest Regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775083743062
+status: 3
+tags: []
+user_id: DELL

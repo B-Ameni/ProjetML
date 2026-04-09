@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/727344129178580169/256fdd6c94d64c4fb9c11a3326fc3c6d/artifacts
+end_time: 1775083743035
+entry_point_name: ''
+experiment_id: '727344129178580169'
+lifecycle_stage: active
+run_id: 256fdd6c94d64c4fb9c11a3326fc3c6d
+run_name: SVR
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775083738932
+status: 3
+tags: []
+user_id: DELL

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/727344129178580169/32eb79604dd04bad87b827e138eaf066/artifacts
+end_time: 1775083738920
+entry_point_name: ''
+experiment_id: '727344129178580169'
+lifecycle_stage: active
+run_id: 32eb79604dd04bad87b827e138eaf066
+run_name: Linear Regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775083734435
+status: 3
+tags: []
+user_id: DELL
