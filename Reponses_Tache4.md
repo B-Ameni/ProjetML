@@ -24,17 +24,19 @@ Le graphique des importances a été généré par le script Python `src/run_rf_
 
 ## 2. Stabilité des prédictions
 
-En testant différents états aléatoires (`random_state = [1, 23, 42, 99, 2024]`), nous obtenons les exactitudes suivantes (sur le Test Set) :
-- Random State `1` : 0.7817
-- Random State `23` : 0.7833
-- Random State `42` : 0.7802
-- Random State `99` : 0.7817
-- Random State `2024` : 0.7848
+En utilisant différents états aléatoires (`random_state = [1, 23, 42, 99, 2024]`) avec l'algorithme `RandomForestRegressor` pour prédire directement les revenus (Régression), nous obtenons le tableau des métriques d'erreur suivant :
 
-**Moyenne :** 0.7824 | **Écart-type :** 0.0016
+| Random State | MAE ($) | MSE | RMSE ($) | R² |
+| :---: | :---: | :---: | :---: | :---: |
+| **1** | 61,767,681 | 15,441,722,894,133,730 | 124,264,729 | 0.6945 |
+| **23** | 60,992,012 | 14,878,137,165,751,528 | 121,975,970 | 0.7056 |
+| **42** | 60,331,975 | 13,887,479,500,901,514 | 117,845,151 | 0.7252 |
+| **99** | 61,593,841 | 14,736,682,873,650,654 | 121,394,740 | 0.7084 |
+| **2024** | 60,463,570 | 14,539,764,500,260,928 | 120,580,946 | 0.7123 |
 
 **En utilisant random_state différent, observez-vous une grande variabilité dans les résultats ? Que cela dit-il sur la robustesse du modèle ?**
-> Non, la variabilité est quasi-nulle (l'écart-type n'est que de 0.0016). Cela prouve que le modèle Random Forest est extrêmement **robuste**. Grâce à sa structure ensembliste (*bagging*), le résultat final résulte d'un vote majoritaire sur de multiples arbres, ce qui neutralise la forte variance que l'on aurait pu observer sur un arbre de décision unique.
+> On observe une variabilité **relativement faible** au regard des sommes évaluées (qui se comptent en centaines de millions de dollars). L'écart sur l'Erreur Absolue Moyenne (MAE) varie d'à peine ~1.4M$ (entre le minimum et le maximum), ce qui représente moins de 2.5% d'écart. L'erreur quadratique ($MSE$) et la racine de l'erreur ($RMSE$) suivent cette même stabilité, et le coefficient de détermination ($R^2$) reste fermement autour de **0.71**.
+> Cela prouve que le modèle Random Forest est extrêmement **robuste**. Typique des méthodes ensemblistes (Bagging), cet algorithme parvient à stabiliser ses prédictions indépendamment des initialisations aléatoires des données bootstrapées et des splits des paramètres.
 
 ---
 
