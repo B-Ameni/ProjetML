@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/423779986315984739/37840e881dbe466a99f55b103ee71f34/artifacts
+end_time: 1776863796632
+entry_point_name: ''
+experiment_id: '423779986315984739'
+lifecycle_stage: active
+run_id: 37840e881dbe466a99f55b103ee71f34
+run_name: RF_BiasVariance_n100_d10
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776863796255
+status: 3
+tags: []
+user_id: DELL

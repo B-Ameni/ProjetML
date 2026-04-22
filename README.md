@@ -48,6 +48,6 @@ python main.py
 
 
 http://localhost:3000 : pour frontend
-http://localhost:3000 : pour backend
+http://localhost:8000 : pour backend
 http://localhost:5000 : pour mlflow
 
