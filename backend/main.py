@@ -323,7 +323,9 @@ def training_job(params=None):
                 'svm': 'SVM',
                 'knn': 'KNN',
                 'rf': 'Random Forest',
-                'lr': 'Logistic Regression'
+                'lr': 'Logistic Regression',
+                'adaboost': 'AdaBoost',
+                'xgboost': 'XGBoost'
             }
             mapped_algos = [algo_map.get(a.lower(), a) for a in algorithms]
             cmd.extend(['--algorithms', *mapped_algos])

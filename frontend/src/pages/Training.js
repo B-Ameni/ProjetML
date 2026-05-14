@@ -41,7 +41,7 @@ const Training = () => {
       setIsTraining(true);
       const trainingParams = {
         ...params,
-        algorithms: selectedAlgos.length > 0 ? selectedAlgos : ['KNN', 'SVM', 'Random Forest', 'Logistic Regression'],
+        algorithms: selectedAlgos.length > 0 ? selectedAlgos : ['KNN', 'SVM', 'Random Forest', 'Logistic Regression', 'AdaBoost', 'XGBoost'],
         trainType,
       };
       await trainModel(trainingParams);

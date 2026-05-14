@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/423779986315984739/931a22c3c18141aaabfded990fd0ae41/artifacts
+end_time: 1778763166461
+entry_point_name: ''
+experiment_id: '423779986315984739'
+lifecycle_stage: active
+run_id: 931a22c3c18141aaabfded990fd0ae41
+run_name: XGBoost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778763159516
+status: 3
+tags: []
+user_id: DELL

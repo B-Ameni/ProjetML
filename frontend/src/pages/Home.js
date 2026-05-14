@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronRight, Info, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,6 +30,20 @@ const ALGORITHMS = [
     fullName: 'Régression Logistique',
     description: 'Simple, interprétable, efficace pour des prédictions binaires.',
     docs: 'La régression logistique calcule la probabilité qu’un film devienne un hit à partir de ses caractéristiques.',
+  },
+  {
+    id: 'adaboost',
+    name: 'AdaBoost',
+    fullName: 'Adaptive Boosting',
+    description: 'Combine plusieurs modèles faibles pour créer un modèle fort et robuste.',
+    docs: 'AdaBoost ajuste les poids des erreurs à chaque itération pour améliorer continuellement les prédictions.',
+  },
+  {
+    id: 'xgboost',
+    name: 'XGBoost',
+    fullName: 'eXtreme Gradient Boosting',
+    description: 'Modèle de gradient boosting très performant et rapide.',
+    docs: 'XGBoost utilise des arbres de décision de manière séquentielle pour corriger les erreurs des modèles précédents avec une grande efficacité.',
   },
 ];
 

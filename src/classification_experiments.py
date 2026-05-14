@@ -9,8 +9,9 @@ from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSe
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.linear_model import LogisticRegression
+from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -98,6 +99,19 @@ def tune_algorithm(model_name, X_train, X_test, y_train, y_test, method):
             'C': [0.01, 0.1, 1.0, 10.0],
             'penalty': ['l1', 'l2']
         }
+    elif model_name == 'AdaBoost':
+        estimator = AdaBoostClassifier(random_state=42)
+        param_grid = {
+            'n_estimators': [50, 100, 200],
+            'learning_rate': [0.01, 0.1, 1.0]
+        }
+    elif model_name == 'XGBoost':
+        estimator = XGBClassifier(random_state=42, eval_metric='logloss')
+        param_grid = {
+            'n_estimators': [50, 100, 200],
+            'max_depth': [3, 5, 7],
+            'learning_rate': [0.01, 0.1, 0.2]
+        }
     else:
         print(f"Tuning non supporté pour {model_name}. Entraînement direct lancé.")
         return None
@@ -121,12 +135,16 @@ def model_from_name(name, params):
         return RandomForestClassifier(n_estimators=int(params.get('n_estimators', 100)), max_depth=None if params.get('max_depth', 10) is None else int(params.get('max_depth', 10)), random_state=42)
     if name == 'Logistic Regression':
         return LogisticRegression(C=float(params.get('C', 1.0)), max_iter=1000, solver='liblinear', random_state=42)
+    if name == 'AdaBoost':
+        return AdaBoostClassifier(n_estimators=int(params.get('n_estimators', 50)), learning_rate=float(params.get('learning_rate', 1.0)), random_state=42)
+    if name == 'XGBoost':
+        return XGBClassifier(n_estimators=int(params.get('n_estimators', 100)), max_depth=int(params.get('max_depth', 3)), learning_rate=float(params.get('learning_rate', 0.1)), random_state=42, eval_metric='logloss')
     return None
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Run classification experiments for Box-Office prediction')
-    parser.add_argument('--algorithms', nargs='*', default=['KNN', 'SVM', 'Random Forest', 'Logistic Regression'])
+    parser.add_argument('--algorithms', nargs='*', default=['KNN', 'SVM', 'Random Forest', 'Logistic Regression', 'AdaBoost', 'XGBoost'])
     parser.add_argument('--learning-rate', type=float, default=0.01)
     parser.add_argument('--max-depth', type=int, default=10)
     parser.add_argument('--n-estimators', type=int, default=100)
@@ -144,7 +162,7 @@ def main():
 
     if args.tune_method:
         for algo in args.algorithms:
-            if algo in ['Random Forest', 'Logistic Regression']:
+            if algo in ['Random Forest', 'Logistic Regression', 'AdaBoost', 'XGBoost']:
                 result = tune_algorithm(algo, X_train, X_test, y_train, y_test, args.tune_method)
                 if result:
                     estimator, best_params = result
@@ -153,7 +171,7 @@ def main():
                 print(f'Auto-tuning non supporté pour {algo}. Entraînement standard lancé.')
 
     for algo in args.algorithms:
-        if args.tune_method and algo in ['Random Forest', 'Logistic Regression']:
+        if args.tune_method and algo in ['Random Forest', 'Logistic Regression', 'AdaBoost', 'XGBoost']:
             continue
         params = {
             'learning_rate': args.learning_rate,
@@ -171,6 +189,10 @@ def main():
             params = {'n_estimators': args.n_estimators, 'max_depth': args.max_depth, 'random_state': 42}
         elif algo == 'Logistic Regression':
             params = {'C': 1.0, 'max_iter': 1000, 'random_state': 42}
+        elif algo == 'AdaBoost':
+            params = {'n_estimators': args.n_estimators, 'learning_rate': args.learning_rate, 'random_state': 42}
+        elif algo == 'XGBoost':
+            params = {'n_estimators': args.n_estimators, 'max_depth': args.max_depth, 'learning_rate': args.learning_rate, 'random_state': 42, 'eval_metric': 'logloss'}
         elif algo == 'SVM':
             params = {'C': 1.0, 'kernel': 'rbf'}
         run_experiment(model, algo, params, X_train, X_test, y_train, y_test)
