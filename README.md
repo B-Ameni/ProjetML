@@ -15,6 +15,8 @@ Modèles implémentés:
 - Support Vector Machine (SVM)
 - Random Forest (donne le meilleur resultat ) 
 - Logistic Regression
+- AdaBoost
+- XGBoost
 
 Installation
 - Python 3.10
