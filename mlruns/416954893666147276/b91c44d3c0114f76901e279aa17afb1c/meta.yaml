@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/416954893666147276/b91c44d3c0114f76901e279aa17afb1c/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '416954893666147276'
+lifecycle_stage: active
+run_id: b91c44d3c0114f76901e279aa17afb1c
+run_name: AdaBoost
+run_uuid: b91c44d3c0114f76901e279aa17afb1c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1779228610599
+status: 1
+tags: []
+user_id: DELL

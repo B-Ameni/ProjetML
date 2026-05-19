@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/416954893666147276/0908b2fdddaf48eeb0101c31ac3bd5fa/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '416954893666147276'
+lifecycle_stage: active
+run_id: 0908b2fdddaf48eeb0101c31ac3bd5fa
+run_name: XGBoost
+run_uuid: 0908b2fdddaf48eeb0101c31ac3bd5fa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1779228140760
+status: 1
+tags: []
+user_id: DELL

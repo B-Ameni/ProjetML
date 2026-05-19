@@ -1,0 +1,6 @@
+feature,ks_stat,p_value,drifted
+budget,0.1864,0.0,True
+popularity,0.1988,0.0,True
+runtime,0.0263,0.8553,False
+vote_average,0.052,0.1178,False
+vote_count,0.0227,0.9451,False

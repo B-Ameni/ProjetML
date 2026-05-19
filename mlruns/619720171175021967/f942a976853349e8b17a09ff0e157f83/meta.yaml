@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/DELL/Desktop/CI2/SEM2/ML2/ProjetML/mlruns/619720171175021967/f942a976853349e8b17a09ff0e157f83/artifacts
+end_time: 1779226355427
+entry_point_name: ''
+experiment_id: '619720171175021967'
+lifecycle_stage: active
+run_id: f942a976853349e8b17a09ff0e157f83
+run_name: drift_ks_test
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1779226346344
+status: 4
+tags: []
+user_id: DELL

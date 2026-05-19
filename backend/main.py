@@ -10,6 +10,20 @@ import os
 import json
 import shutil
 from pathlib import Path
+import sys
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+# Ajouter le répertoire src au chemin pour les imports
+sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
+
+from mlflow_config import TRACKING_URI
 
 app = FastAPI(title="Box-Office Prediction API")
 
@@ -21,9 +35,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Connect to local tracking
+# Connect to MLflow tracking server
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-mlflow.set_tracking_uri(f"file:///{project_root}/mlruns".replace("\\", "/"))
+mlflow.set_tracking_uri(TRACKING_URI)
 
 # Config file to track deployed model and active dataset
 deployed_model_file = os.path.join(project_root, ".deployed_model.json")
@@ -316,6 +330,12 @@ def training_job(params=None):
         python_exec = "python"
 
     cmd = [python_exec, script_path]
+    
+    # Pass the current active dataset path
+    current_dataset = get_current_dataset_path()
+    cmd.extend(['--data-path', current_dataset])
+    logger.info(f"Using dataset: {current_dataset}")
+    
     if params is not None:
         algorithms = params.get('algorithms')
         if algorithms:
@@ -329,7 +349,7 @@ def training_job(params=None):
             }
             mapped_algos = [algo_map.get(a.lower(), a) for a in algorithms]
             cmd.extend(['--algorithms', *mapped_algos])
-            print(f"Training with algorithms: {mapped_algos}")
+            logger.info(f"Training with algorithms: {mapped_algos}")
 
         if params.get('learningRate') is not None:
             cmd.extend(['--learning-rate', str(params['learningRate'])])
@@ -347,18 +367,22 @@ def training_job(params=None):
                 cmd.extend(['--tune-method', 'gridsearch'])
 
     try:
+        logger.info(f"Running training command: {' '.join(cmd)}")
         result = subprocess.run(
             cmd,
             cwd=project_root,
             capture_output=True,
-            text=True
+            text=True,
+            timeout=3600  # 1 hour timeout
         )
         if result.returncode != 0:
-            print(f"Training script error: {result.stderr}")
+            logger.error(f"Training script error (exit code {result.returncode}):\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}")
         else:
-            print(f"Training completed: {result.stdout}")
+            logger.info(f"Training completed successfully:\n{result.stdout}")
+    except subprocess.TimeoutExpired:
+        logger.error(f"Training script timed out after 1 hour")
     except Exception as e:
-        print(f"Error running training job: {e}")
+        logger.exception(f"Error running training job: {e}")
 
 @app.post("/train")
 def run_train(request: TrainRequest, background_tasks: BackgroundTasks):

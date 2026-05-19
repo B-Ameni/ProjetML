@@ -11,13 +11,14 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 from pathlib import Path
+from mlflow_config import TRACKING_URI
 
 # Paths setup
 project_root = Path(__file__).parent.parent
 data_path = project_root / 'data' / 'movies_clean.csv'
 
 # Configure MLflow
-mlflow.set_tracking_uri(project_root.joinpath("mlruns").as_uri())
+mlflow.set_tracking_uri(TRACKING_URI)
 mlflow.set_experiment("Movie_Rating_Regression")
 
 def load_and_preprocess_data():

@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 import os
 import sys
+import json
 import pandas as pd
 import mlflow
 import mlflow.sklearn
@@ -15,19 +16,37 @@ from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
+from mlflow_config import TRACKING_URI
 
 # Paths setup
 project_root = Path(__file__).parent.parent
-data_path = project_root / 'data' / 'movies_credits_merged.csv'
+dataset_config_file = project_root / '.dataset_config.json'
 
 # Configure MLflow
-mlflow.set_tracking_uri(project_root.joinpath("mlruns").as_uri())
+mlflow.set_tracking_uri(TRACKING_URI)
 mlflow.set_experiment("Movie_Success_Classification")
 
 FEATURES = ['budget', 'popularity', 'runtime', 'vote_average', 'vote_count']
 
 
-def load_and_preprocess_data():
+def get_current_dataset_path():
+    """Get the currently active dataset path from config file or use default"""
+    if dataset_config_file.exists():
+        try:
+            with open(dataset_config_file, 'r') as f:
+                config = json.load(f)
+                path = config.get('current_dataset')
+                if path and os.path.exists(path):
+                    return path
+        except Exception:
+            pass
+    return str(project_root / 'data' / 'movies_credits_merged.csv')
+
+
+def load_and_preprocess_data(data_path=None):
+    if data_path is None:
+        data_path = get_current_dataset_path()
+    print(f"Loading data from: {data_path}")
     df = pd.read_csv(data_path)
     df = df[(df['budget'] > 0) & (df['revenue'] > 0)].copy()
     df['is_success'] = (df['revenue'] > df['budget']).astype(int)
@@ -150,13 +169,14 @@ def parse_args():
     parser.add_argument('--n-estimators', type=int, default=100)
     parser.add_argument('--k', type=int, default=5)
     parser.add_argument('--tune-method', type=str, default=None, choices=['gridsearch', 'randomsearch', 'optuna'])
+    parser.add_argument('--data-path', type=str, default=None, help='Path to the dataset to use')
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
     print('Loading data...')
-    X_train, X_test, y_train, y_test = load_and_preprocess_data()
+    X_train, X_test, y_train, y_test = load_and_preprocess_data(data_path=args.data_path)
     print(f'Data loaded: {X_train.shape[0]} training samples, {X_test.shape[0]} testing samples. Target positive rate: {y_train.mean():.2%}')
     print(f'Training algorithms: {args.algorithms}')
 
